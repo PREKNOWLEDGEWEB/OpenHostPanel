@@ -2,5 +2,6 @@
     "php74" : "9074",
     "php81" : "9081",
     "php82" : "9082",
-    "expressHandler" : "80"
+    "expressHandler" : "80",
+    "panel" : "7600"
 }

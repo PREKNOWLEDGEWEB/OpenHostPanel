@@ -9,7 +9,10 @@ var sendHttp = (
 ) => {
     let options = {
         headers: {
-          'User-Agent': data.userAgent
+            'Content-Type' : 'application/json; charset=UTF-8',
+            'Accept': 'Token',
+            'User-agent' : data.userAgent,
+            "Access-Control-Allow-Origin": "*",
         }
     }
     var urlFinal = "";
@@ -19,9 +22,35 @@ var sendHttp = (
 
     if(data.method == "GET"){
         axios
-            .get(`${urlFinal}${domain}/${url}`, {} , options).then(function (response) {
-                out(response.body);
+            .get(`${urlFinal}${domain.replaceAll(".","-")}${url}`, {
+                params : {}
+            } , options).then(function (response) {
+                out(response.data);
             })
+            .catch(function (error) {
+                out(error.response.data);
+            })
+            
+    }else if(data.method == "POST"){
+        console.log(data);
+        axios({
+            method: 'post',
+            url: `${urlFinal}${domain.replaceAll(".","-")}${url}`,
+            data: data.data,
+            headers: {
+                'Content-Type' : 'application/json; charset=UTF-8',
+                'Accept': 'Token',
+                'User-agent' : data.userAgent,
+                "Access-Control-Allow-Origin": "*",
+                "Array-data" : JSON.stringify(data.data)
+            }
+        }).then(function (response) {
+            out(response.data);
+            console.log(response.data);
+          })
+          .catch(function (error) {
+            out(error.response.data);
+          });
     }
 }
 

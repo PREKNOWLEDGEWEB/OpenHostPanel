@@ -71,7 +71,7 @@ echo "###                           ###";
 sudo ufw allow 80/tcp
 sudo ufw allow 443/tcp
 sudo ufw allow 21/tcp
-sudo ufw allow 9010/tcp
+sudo ufw allow 7600/tcp
 
 systemctl daemon-reload
 systemctl start ohspanel
