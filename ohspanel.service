@@ -1,0 +1,11 @@
+[Unit]
+Description=OpenHostPanel Server
+After=network.target
+StartLimitIntervalSec=0
+[Service]
+Type=simple
+User=root
+ExecStart=/usr/bin/node /opt/openhostpanel/src/index.js
+
+[Install]
+WantedBy=multi-user.target
